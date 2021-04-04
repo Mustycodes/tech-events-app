@@ -29,7 +29,7 @@ export const eventData = [
     id: 3,
     name: "OSCA Lagos",
     date: new Date("04/20/2021"),
-    time: "10:00 am",
+    time: "08:30 am",
     price: 2000,
     imageUrl: require('./assets/images/DevFest2.png').default,
     onlineUrl: 'https://www.osca.com'

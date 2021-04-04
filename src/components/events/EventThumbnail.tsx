@@ -43,7 +43,7 @@ const EventThumbnail = ({ event }: any) => {
 
   return (
     <Link to={`/events/${event.id}`} className="bg-gray-800 bg-opacity-80 rounded-lg overflow-hidden">
-      <div >
+      <article>
         <img src={event.imageUrl} className="h-44 w-full object-cover" alt="" />
         <div className="px-5 py-3 text-gray-400">
           <h2 className="text-2xl font-semibold text-white">{event.name}</h2>
@@ -60,7 +60,7 @@ const EventThumbnail = ({ event }: any) => {
           )}
           {event.onlineUrl && <p>Online Url: {event.onlineUrl}</p>}
         </div>
-      </div>
+      </article>
     </Link>
   );
 };

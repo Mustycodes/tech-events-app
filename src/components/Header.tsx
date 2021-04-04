@@ -24,7 +24,7 @@ const Header = () => {
       </nav>
       <form>
         <input
-          className="p-2 bg-gray-200 outline-none rounded-l-full"
+          className="p-2 bg-gray-200 bg-opacity-30 text-gray-100 outline-none rounded-l-full"
           type="search"
           name="search-event"
           id="search-event"

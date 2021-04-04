@@ -6,12 +6,13 @@ export interface Event {
   date: Date;
   time: string;
   price: number;
-  // imageUrl: string;
+  imageUrl:any;
   location?: {
       address: string;
       city: string;
       country: string;
   };
+  onlineUrl?: any;
 }
 export interface NavItemProps {
   to:string;

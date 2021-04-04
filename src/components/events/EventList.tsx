@@ -7,7 +7,7 @@ const EventList = () => {
   useEffect(() => {
     setTimeout(() => {
       setEvents(eventData);
-    }, 2000);
+    }, 500);
   })
   if (!events.length) {
     return <h2 className="text-white">Loading...</h2>

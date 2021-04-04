@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Event {
   id: number;
   name: string;
@@ -11,3 +13,7 @@ export interface Event {
       country: string;
   };
 }
+export interface NavItemProps {
+  to:string;
+  children: ReactNode
+} 

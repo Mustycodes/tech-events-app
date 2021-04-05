@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { eventData } from "../mockData";
-import { GrPrevious } from "react-icons/gr";
 const EventDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const singleEvent = eventData.find((event) => event.id === Number(id));

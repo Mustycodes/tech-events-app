@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { NavItemProps } from "../shared/types/types";
 const Header = () => {
-  const NavItem:React.FC<NavItemProps> = ({to, children}) => (
+  const NavItem: React.FC<NavItemProps> = ({ to, children }) => (
     <li>
-      <Link className="py-2.5 px-2" to={to}>
+      <NavLink
+        exact
+        activeClassName="text-purple-500 border-b border-purple-500"
+        className="py-2.5 px-2 hover:bg-gray-800"
+        to={to}
+      >
         {children}
-      </Link>
+      </NavLink>
     </li>
   );
   return (
@@ -17,9 +22,9 @@ const Header = () => {
       </div>
       <nav>
         <ul className="flex">
-         <NavItem to="/events">All Events</NavItem>
-         <NavItem to="/events/new">Create Event</NavItem>
-         <NavItem to="/">Events</NavItem>
+          <NavItem to="/events">All Events</NavItem>
+          <NavItem to="/events/new">Create Event</NavItem>
+          <NavItem to="/vrfr">Events</NavItem>
         </ul>
       </nav>
       <form>

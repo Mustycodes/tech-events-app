@@ -46,7 +46,7 @@ const Header = () => {
         <li className="py-3">
           <Link
             className="border-r border-b border-purple-400 hover:bg-purple-500 hover:text-white py-2.5 px-5 mx-1"
-            to="/"
+            to="/login"
           >
             Log In
           </Link>
@@ -54,7 +54,7 @@ const Header = () => {
         <li className="py-3">
           <Link
             className="border-l border-b border-purple-400 hover:bg-purple-500 hover:text-white py-2.5 px-5 mx-1 mr-0"
-            to="/"
+            to="/signup"
           >
             Sign Up
           </Link>

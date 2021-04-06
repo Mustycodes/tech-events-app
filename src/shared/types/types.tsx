@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
 export interface Event {
   id: number;
@@ -6,15 +6,37 @@ export interface Event {
   date: Date;
   time: string;
   price: number;
-  imageUrl:any;
+  imageUrl:string;
   location?: {
       address: string;
       city: string;
       country: string;
   };
-  onlineUrl?: any;
+  onlineUrl?: string;
+  sessions: Session[];
 }
+
+export interface Session {
+  id: number;
+  name: string;
+  presenter: string;
+  level: string;
+  duration:number;
+  abstract:string;
+  voters: string[];
+}
+
+
 export interface NavItemProps {
   to:string;
   children: ReactNode
 } 
+
+export interface TextInputFieldWithLabelProps {
+  id:string;
+  type?: "text" | "password" | "email";
+  label:string;
+  value: string;
+  onChange(e:ChangeEvent):void;
+  isFieldActive: boolean;
+}

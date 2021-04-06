@@ -4,6 +4,7 @@ import EventsPage from "./pages/eventsPage";
 import EventDetailsPage from "./pages/eventDetailsPage";
 import CreateEventPage from "./pages/createEventPage";
 import Error404Page from "./pages/error404Page";
+import LoginPage from "./pages/loginPage";
 
 function App() {
   const appRoutes = [
@@ -11,8 +12,10 @@ function App() {
     { path: "/events", component: <EventsPage /> },
     { path: "/events/new", component: <CreateEventPage /> },
     { path: "/events/:id", component: <EventDetailsPage /> },
+    { path: "/login", component: <LoginPage /> },
     { path: "", component: <Error404Page /> },
   ];
+
   return (
     <div className="lg:mx-36 text-white">
       <Header />

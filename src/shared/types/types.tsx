@@ -37,6 +37,7 @@ export interface TextInputFieldWithLabelProps {
   type?: "text" | "password" | "email";
   label:string;
   value: string;
-  onChange(e:ChangeEvent):void;
   isFieldActive: boolean;
+  onChange(e:ChangeEvent):void;
+  onBlur():void;
 }

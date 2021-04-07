@@ -1,66 +1,93 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import FloatingLabelInput from "../components/FloatingLabelInput";
 import TextInputFieldWithLabel from "../components/TextInputFieldWithLabel";
 
-export interface LoginState {
+export interface User {
   email: string;
   password: string;
+}
+
+export interface ActiveState {
   isEmailActive: boolean;
   isPasswordActive: boolean;
 }
 
-const LoginPage = () => {
+function LoginPage() {
   const history = useHistory();
-  const [state, setState] = useState<LoginState>({
+  const [state, setState] = useState<User>({
     email: "",
-    password: "",
+    password: ""
+  });
+  const [activeState, setActiveState] = useState<ActiveState>({
     isEmailActive: false,
     isPasswordActive: false,
   });
+  const [fieldErrors, setFieldErrors] = useState({});
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setState({ ...state, [name]: value });
   };
   const handleBlur = () => {
     if (state.email && state.password) {
-      setState({ ...state, isEmailActive: true, isPasswordActive: true });
+      setActiveState({isEmailActive: true, isPasswordActive: true });
     } else if (state.email && !state.password) {
-      setState({ ...state, isEmailActive: true, isPasswordActive: false });
+      setActiveState({isEmailActive: true, isPasswordActive: false });
     } else if (state.password && !state.email) {
-      setState({ ...state, isPasswordActive: true, isEmailActive: false });
+      setActiveState({isPasswordActive: true, isEmailActive: false });
     } else {
-      setState({ ...state, isPasswordActive: false, isEmailActive: false });
+      setActiveState({isPasswordActive: false, isEmailActive: false });
     }
   };
+  const  validate = (user:any) => {
+    const errors = {};
+    if (!user.email.trim()) {
+      (errors as any).email = "Email is required";
+    } 
+    if (!user.password.trim()) {
+      (errors as any).password = "Password is required";
+    } 
+    return errors;
+  }
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    const user:User = {...state};
+    const fieldErrorMsg = validate(user);
+    setFieldErrors(fieldErrorMsg);
+    // check if there are errors available
+    // if yes jump out of function
+    if (Object.keys(fieldErrorMsg).length) return;
+    setState({email: "", password: ""});
+    history.push("/events");
+  }
   return (
     <div>
       <h1 className="heading-one">Log In</h1>
       <hr className="mb-8" />
-      <form action="" className="w-full md:max-w-sm text-right">
+      <form action="" onSubmit={handleSubmit} className="w-full md:max-w-sm text-right">
         <span className="italic inline-block text-right text-sm text-red-400">
-          Email is required
+          {(fieldErrors as any).email }
         </span>
         <FloatingLabelInput>
           <TextInputFieldWithLabel
             id="email"
             type="email"
-            isFieldActive={state.isEmailActive}
+            isFieldActive={activeState.isEmailActive}
             label="E-mail"
             value={state.email}
             onChange={handleChange}
             onBlur={handleBlur}
           />
         </FloatingLabelInput>
-        <span className="italic text-right text-sm text-red-400">
-          Password is required
+        <span className="italic inline-block text-right text-sm text-red-400">
+        {(fieldErrors as any).password }
         </span>
         <FloatingLabelInput>
           <TextInputFieldWithLabel
             id="password"
             type="password"
-            isFieldActive={state.isPasswordActive}
+            isFieldActive={activeState.isPasswordActive}
             label="Password"
             value={state.password}
             onChange={handleChange}

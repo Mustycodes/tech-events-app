@@ -21,6 +21,7 @@ const TextInputFieldWithLabel = ({
         onChange={onChange}
         onBlur={onBlur}
         className="input-field"
+        required
       />
       <label htmlFor={id} className={labelClass}>
         {label}

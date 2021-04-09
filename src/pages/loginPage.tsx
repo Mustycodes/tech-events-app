@@ -2,25 +2,28 @@ import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import FloatingLabelInput from "../components/FloatingLabelInput";
 import TextInputFieldWithLabel from "../components/TextInputFieldWithLabel";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/user/actions";
 
 export interface User {
-  email: string;
+  username: string;
   password: string;
 }
 
 export interface ActiveState {
-  isEmailActive: boolean;
+  isUsernameActive: boolean;
   isPasswordActive: boolean;
 }
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [state, setState] = useState<User>({
-    email: "",
-    password: ""
+    username: "",
+    password: "",
   });
   const [activeState, setActiveState] = useState<ActiveState>({
-    isEmailActive: false,
+    isUsernameActive: false,
     isPasswordActive: false,
   });
   const [fieldErrors, setFieldErrors] = useState({});
@@ -29,59 +32,65 @@ function LoginPage() {
     setState({ ...state, [name]: value });
   };
   const handleBlur = () => {
-    if (state.email && state.password) {
-      setActiveState({isEmailActive: true, isPasswordActive: true });
-    } else if (state.email && !state.password) {
-      setActiveState({isEmailActive: true, isPasswordActive: false });
-    } else if (state.password && !state.email) {
-      setActiveState({isPasswordActive: true, isEmailActive: false });
+    if (state.username && state.password) {
+      setActiveState({ isUsernameActive: true, isPasswordActive: true });
+    } else if (state.username && !state.password) {
+      setActiveState({ isUsernameActive: true, isPasswordActive: false });
+    } else if (state.password && !state.username) {
+      setActiveState({ isPasswordActive: true, isUsernameActive: false });
     } else {
-      setActiveState({isPasswordActive: false, isEmailActive: false });
+      setActiveState({ isPasswordActive: false, isUsernameActive: false });
     }
   };
-  const  validate = (user:any) => {
+  const validate = (user: any) => {
     const errors = {};
-    if (!user.email.trim()) {
-      (errors as any).email = "Email is required";
-    } 
+    if (!user.username.trim()) {
+      (errors as any).username = "Username is required";
+    }
     if (!user.password.trim()) {
       (errors as any).password = "Password is required";
-    } 
+    }
     return errors;
-  }
+  };
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const user:User = {...state};
+    const user: User = { ...state };
     const fieldErrorMsg = validate(user);
     setFieldErrors(fieldErrorMsg);
     // check if there are errors available
     // if yes jump out of function
     if (Object.keys(fieldErrorMsg).length) return;
-    setState({email: "", password: ""});
+    dispatch(loginUser(user));
+    setState({ username: "", password: "" });
     history.push("/events");
-  }
+  };
   return (
     <div>
       <h1 className="heading-one">Log In</h1>
       <hr className="mb-8" />
-      <form action="" onSubmit={handleSubmit} className="w-full md:max-w-sm text-right">
+      <form
+        action=""
+        onSubmit={handleSubmit}
+        className="w-full md:max-w-sm text-right"
+        noValidate
+      >
         <span className="italic inline-block text-right text-sm text-red-400">
-          {(fieldErrors as any).email }
+          {(fieldErrors as any).username}
         </span>
         <FloatingLabelInput>
           <TextInputFieldWithLabel
-            id="email"
-            type="email"
-            isFieldActive={activeState.isEmailActive}
-            label="E-mail"
-            value={state.email}
+            id="username"
+            type="text"
+            isFieldActive={activeState.isUsernameActive}
+            label="Username"
+            value={state.username}
             onChange={handleChange}
             onBlur={handleBlur}
           />
         </FloatingLabelInput>
         <span className="italic inline-block text-right text-sm text-red-400">
-        {(fieldErrors as any).password }
+          {(fieldErrors as any).password}
         </span>
         <FloatingLabelInput>
           <TextInputFieldWithLabel
@@ -126,6 +135,6 @@ function LoginPage() {
       </form>
     </div>
   );
-};
+}
 
 export default LoginPage;

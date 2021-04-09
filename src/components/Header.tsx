@@ -1,6 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
+import { RootStateOrAny, useSelector } from "react-redux";
 import { NavItemProps } from "../shared/types/types";
+import profileImg from "../assets/images/monsieur.png";
 const Header = () => {
+  const{ isAuthenticated, name} = useSelector(
+    (state: RootStateOrAny) => state.user
+  );
+  
+
   const NavItem: React.FC<NavItemProps> = ({ to, children }) => (
     <li>
       <NavLink
@@ -42,24 +49,35 @@ const Header = () => {
           Search
         </button>
       </form>
-      <ul className="flex">
-        <li className="py-3">
-          <Link
-            className="border-r border-b border-purple-400 hover:bg-purple-500 hover:text-white py-2.5 px-5 mx-1"
-            to="/login"
-          >
-            Log In
-          </Link>
-        </li>
-        <li className="py-3">
-          <Link
-            className="border-l border-b border-purple-400 hover:bg-purple-500 hover:text-white py-2.5 px-5 mx-1 mr-0"
-            to="/signup"
-          >
-            Sign Up
-          </Link>
-        </li>
-      </ul>
+      {isAuthenticated ? (
+        <ul className="flex items-center">
+          <li>
+            <p className="font-bold mr-4">Welcome {name}</p>
+          </li>
+          <li>
+            <Link to="/user/profile"><img src={profileImg} alt="" className="w-14 h-14 rounded-full" /></Link>
+          </li>
+        </ul>
+      ) : (
+        <ul className="flex">
+          <li className="py-3">
+            <Link
+              className="border-r border-b border-purple-400 hover:bg-purple-500 hover:text-white py-2.5 px-5 mx-1"
+              to="/login"
+            >
+              Log In
+            </Link>
+          </li>
+          <li className="py-3">
+            <Link
+              className="border-l border-b border-purple-400 hover:bg-purple-500 hover:text-white py-2.5 px-5 mx-1 mr-0"
+              to="/signup"
+            >
+              Sign Up
+            </Link>
+          </li>
+        </ul>
+      )}
     </header>
   );
 };

@@ -6,6 +6,7 @@ import CreateEventPage from "./pages/createEventPage";
 import Error404Page from "./pages/error404Page";
 import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
+import ProfilePage from "./pages/profilePage";
 
 function App() {
   const appRoutes = [
@@ -15,6 +16,7 @@ function App() {
     { path: "/events/:id", component: <EventDetailsPage /> },
     { path: "/login", component: <LoginPage /> },
     { path: "/signup", component: <SignUpPage /> },
+    { path: "/user/profile", component: <ProfilePage /> },
     { path: "", component: <Error404Page /> },
   ];
 

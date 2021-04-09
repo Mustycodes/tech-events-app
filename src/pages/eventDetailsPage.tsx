@@ -1,11 +1,20 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { eventData } from "../mockData";
+import {useAppDispatch, useAppSelector} from '../redux/reduxHooks'
 const EventDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
-  const singleEvent = eventData.find((event) => event.id === Number(id));
+  const eventData = useAppSelector(state => state.events.data);
+
+  const singleEvent = eventData.find((event:any) => event.id === Number(id));
   if (singleEvent === undefined) {
     throw new TypeError("The value was promised to be there");
   }
+
+  useEffect(() => {
+    console.log(eventData);
+    
+  }, [])
 
   return (
     <div>

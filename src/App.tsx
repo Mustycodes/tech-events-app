@@ -22,7 +22,8 @@ function App() {
 
   return (
     <div className="lg:mx-36 text-white">
-      <Header />
+      {/* <Header /> */}
+      
       <Switch>
         {appRoutes.map((route) => (
           <Route exact path={route.path}>

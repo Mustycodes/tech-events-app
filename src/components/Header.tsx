@@ -2,6 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { NavItemProps } from "../shared/types/types";
 import profileImg from "../assets/images/monsieur.png";
+
+
+
 const Header = () => {
   const{ isAuthenticated, name} = useSelector(
     (state: RootStateOrAny) => state.user

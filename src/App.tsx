@@ -11,13 +11,14 @@ import ProfilePage from "./pages/profilePage";
 
 import Burger from './components/navbar/Burger';
 import Menu from './components/navbar/Menu'
+import Overlay from './components/navbar/Overlay'
 import {useOnClickAway} from './components/navbar/hooks'
 
 function App() {
   const [open, setOpen] = useState(false);
 
-  const node = useRef();
-  useOnClickAway(node, () => setOpen(false));
+  const navbarRef = useRef(null);
+  useOnClickAway(navbarRef, () => setOpen(false));
   const appRoutes = [
     { path: "/", component: <h1>HOME PAGE</h1> },
     { path: "/events", component: <EventsPage /> },
@@ -31,8 +32,10 @@ function App() {
 
   return (
     <div className=" lg:mx-36 text-white">
+      {/* Page Overlay */}
+       <Overlay open={open} />
       {/* <Header /> */}
-      <div>
+      <div ref={navbarRef}>
         <Burger open={open} setOpen={setOpen} />
         <Menu open={open} />
       </div>

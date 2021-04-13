@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledBurger, StyledDiv } from './StyledBurger';
 
 const Burger = ({open, setOpen}: {open:boolean, setOpen(o:boolean):void}) => {

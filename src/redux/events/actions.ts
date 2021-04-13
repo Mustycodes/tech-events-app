@@ -18,3 +18,16 @@ export const fetchEventsFailed = (error: any) => {
     payload: error,
   };
 };
+
+export const addEventInit = () => {
+  return {
+    type: types.ADD_EVENT_INIT,
+  };
+};
+
+export const addEventSuccess = (event:any) => {
+  return {
+    type: types.ADD_EVENT_SUCCESS,
+    payload: event,
+  };
+};

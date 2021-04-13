@@ -1,6 +1,5 @@
-import { toast, ToastContainer } from "react-toastify";
+
 import { Link } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 const EventThumbnail = ({ event }: any) => {
   let startTime, timeClass;
   const convertTime12to24 = (time12h: string) => {
@@ -34,12 +33,6 @@ const EventThumbnail = ({ event }: any) => {
       break;
   }
 
-  const notify = () => {
-    toast(`${event.name} 🚀`);
-  };
-  {
-    /* <ToastContainer hideProgressBar newestOnTop autoClose={3000} toastStyle={{backgroundColor: 'rgba(110, 231, 183', color: 'rgba(255, 255, 250)'}}/> */
-  }
 
   return (
     <Link to={`/events/${event.id}`} className="bg-gray-800 bg-opacity-80 rounded-lg overflow-hidden">
@@ -52,13 +45,12 @@ const EventThumbnail = ({ event }: any) => {
             Time: {event.time} <span className={timeClass}>({startTime})</span>
           </p>
           <p>Price: &#8358;{event.price}</p>
-          {event.location && (
+          {event.onlineUrl ? <p>Online Url: {event.onlineUrl}</p> :(
             <p>
               Location: {event.location.address}, {event.location.city},{" "}
               {event.location.country}
             </p>
           )}
-          {event.onlineUrl && <p>Online Url: {event.onlineUrl}</p>}
         </div>
       </article>
     </Link>

@@ -11,6 +11,16 @@ const eventsReducer:Reducer = (state = initialState, action) => {
     case types.FETCH_EVENTS_FAILED:
       return { ...state, isLoading: false, error: true };
 
+
+    case types.ADD_EVENT_INIT:
+      return {...state, isLoading:true}
+    case types.ADD_EVENT_SUCCESS:
+      const newData = [...state.data, action.payload];
+      console.log(state);
+      
+      return {
+        ...state, isLoading:false, data:newData 
+      }
     default:
       return state;
   }

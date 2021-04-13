@@ -24,7 +24,7 @@ const Header = () => {
     </li>
   );
   return (
-    <header className="text-gray-400 flex justify-between py-6 items-center">
+    <header className="hidden md:flex text-gray-400 justify-between py-6 items-center">
       <div className="logo">
         <Link className="font-bold text-2xl text-purple-300" to="/">
           TechEvents

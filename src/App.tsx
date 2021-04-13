@@ -34,10 +34,10 @@ function App() {
     <div className=" lg:mx-36 text-white">
       {/* Page Overlay */}
        <Overlay open={open} />
-      {/* <Header /> */}
-      <div ref={navbarRef}>
+      <Header />
+      <div className="block md:hidden" ref={navbarRef}>
         <Burger open={open} setOpen={setOpen} />
-        <Menu open={open} />
+        <Menu open={open} setOpen={() => setOpen(false)} />
       </div>
       
       

@@ -1,6 +1,6 @@
 import React from 'react'
 export const StyledBurger = ({children, onClick}: any) => (
-  <button onClick={onClick} className="absolute top-3 left-8 flex flex-col justify-around w-8 h-8 bg-transparent border-none cursor-pointer p-0 z-50 focus:outline-none">
+  <button onClick={onClick} className="absolute top-3 right-8 flex flex-col justify-around w-8 h-8 bg-transparent border-none cursor-pointer p-0 z-50 focus:outline-none">
     {children}
   </button>
 )

@@ -1,4 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 
 import "../styles/createEventPage.css";
@@ -44,6 +45,7 @@ const CreateEventPage = () => {
     dispatch(addEventInit());
     console.log(state);
     dispatch(addEventSuccess(state));
+    toast.success("Event Added!");
     setState(initialState);
     history.push('/events');
   }

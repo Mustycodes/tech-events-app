@@ -1,7 +1,6 @@
 
 import EventThumbnail from "./EventThumbnail";
 
-
 const EventList = ({events}:any) => {
  
  

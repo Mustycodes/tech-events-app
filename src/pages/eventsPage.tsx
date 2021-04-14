@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import EventList from "../components/events/EventList"
 import { eventData } from '../mockData'
-import { toast } from "react-toastify";
 
 import { fetchEventsInit, fetchEventsSuccess } from '../redux/events/actions';
 import { useAppSelector, useAppDispatch } from '../redux/reduxHooks';

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import SessionList from "../components/session/SessionList";
 import { eventData } from "../mockData";
 import {useAppDispatch, useAppSelector} from '../redux/reduxHooks'
 const EventDetailsPage = () => {
@@ -35,7 +36,7 @@ const EventDetailsPage = () => {
         </svg>{" "}
         Go Back
       </Link>
-      <div className="grid grid-cols-2 gap-4 mt-6">
+      <section className="grid grid-cols-2 gap-4 mt-6">
         <div>
           <img
             className="h-80 w-full object-cover"
@@ -87,7 +88,29 @@ const EventDetailsPage = () => {
             <p className="text-2xl text-gray-400">{singleEvent.date.toLocaleDateString()}</p>
           </div>
         </div>
+      </section>
+
+      <hr className="my-8 border-purple-900" />
+
+      <section >
+        
+      <div className="grid grid-cols-12 gap-1">
+        <div className="">
+          Place <br/>Holder
+        </div>
+        <div className="md:col-span-9">
+        <header className="flex justify-between">
+          <h2>Event Sessions</h2>
+          <button className="text-purple-500">Add Session</button>
+        </header>
+        <SessionList sessions={[...new Array(6)]} />
+        </div>
+        <div className="col-span-2">
+          Place <br/> Holder
+        </div>
       </div>
+      </section>
+
     </div>
   );
 };

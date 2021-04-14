@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { Route, Switch } from "react-router-dom";
-import Header from "./components/Header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import EventsPage from "./pages/eventsPage";
 import EventDetailsPage from "./pages/eventDetailsPage";
 import CreateEventPage from "./pages/createEventPage";
@@ -9,6 +11,7 @@ import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
 import ProfilePage from "./pages/profilePage";
 
+import Header from "./components/Header";
 import Burger from './components/navbar/Burger';
 import Menu from './components/navbar/Menu'
 import Overlay from './components/navbar/Overlay'
@@ -48,6 +51,7 @@ function App() {
           </Route>
         ))}
       </Switch>
+      <ToastContainer hideProgressBar newestOnTop autoClose={3000} toastStyle={{backgroundColor: 'rgba(110, 231, 183', color: 'rgba(255, 255, 250)'}}/>
     </div>
   );
 }

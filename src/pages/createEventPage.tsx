@@ -1,6 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 
-import "react-toastify/dist/ReactToastify.css";
+
 import "../styles/createEventPage.css";
 import { useHistory } from "react-router";
 import {useAppDispatch} from '../redux/reduxHooks'
@@ -45,7 +45,7 @@ const CreateEventPage = () => {
     console.log(state);
     dispatch(addEventSuccess(state));
     setState(initialState);
-    // history.push('/events');
+    history.push('/events');
   }
 
   return (

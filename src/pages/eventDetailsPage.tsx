@@ -1,25 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import SessionList from "../components/session/SessionList";
 import { eventData } from "../mockData";
-import {useAppDispatch, useAppSelector} from '../redux/reduxHooks'
+import { useAppDispatch, useAppSelector } from "../redux/reduxHooks";
 const EventDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
-  const eventData = useAppSelector(state => state.events.data);
+  const eventData = useAppSelector((state) => state.events.data);
 
-  const singleEvent = eventData.find((event:any) => event.id === Number(id));
+  const [isAddMode, setIsAddMode] = useState(false);
+
+  const singleEvent = eventData.find((event: any) => event.id === Number(id));
   if (singleEvent === undefined) {
     throw new TypeError("The value was promised to be there");
   }
 
   useEffect(() => {
     console.log(eventData);
-    
-  }, [])
+  }, []);
 
   return (
     <div>
-      <Link to="/events" className="text-2xl mb-4 inline-block hover:text-gray-400">
+      <Link
+        to="/events"
+        className="text-2xl mb-4 inline-block hover:text-gray-400"
+      >
         <svg
           className="w-8 h-8 inline text-gray-300"
           fill="none"
@@ -85,32 +89,44 @@ const EventDetailsPage = () => {
             <p className="text-4xl font-semibold text-purple-300">
               &#36;{singleEvent.price}
             </p>
-            <p className="text-2xl text-gray-400">{singleEvent.date.toLocaleDateString()}</p>
+            <p className="text-2xl text-gray-400">
+              {singleEvent.date.toLocaleDateString()}
+            </p>
           </div>
         </div>
       </section>
 
       <hr className="my-8 border-purple-900" />
 
-      <section >
-        
-      <div className="grid grid-cols-12 gap-1">
-        <div className="">
-          Place <br/>Holder
+      <section>
+        <div className="grid grid-cols-12 gap-1">
+          <div className="">
+            Place <br />
+            Holder
+          </div>
+          <div className="md:col-span-9">
+            <header className="flex justify-between">
+              <h2>Event Sessions</h2>
+              <button
+                onClick={() => setIsAddMode(true)}
+                className="text-purple-500"
+              >
+                Add Session
+              </button>
+            </header>
+            {!isAddMode ? (
+              <SessionList sessions={[...new Array(6)]} />
+            ) : (
+              <div>
+                <h1>This is Add Mode</h1>
+              </div>
+            )}
+          </div>
+          <div className="col-span-2">
+            Place <br /> Holder
+          </div>
         </div>
-        <div className="md:col-span-9">
-        <header className="flex justify-between">
-          <h2>Event Sessions</h2>
-          <button className="text-purple-500">Add Session</button>
-        </header>
-        <SessionList sessions={[...new Array(6)]} />
-        </div>
-        <div className="col-span-2">
-          Place <br/> Holder
-        </div>
-      </div>
       </section>
-
     </div>
   );
 };

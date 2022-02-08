@@ -100,13 +100,19 @@ const EventDetailsPage = () => {
 
       <section>
         <div className="grid grid-cols-12 gap-1">
-          <div className="">
-            Place <br />
-            Holder
-          </div>
-          <div className="md:col-span-9">
-            <header className="flex justify-between">
+          <div className="md:col-span-12">
+            <header className="flex justify-between items-center">
               <h2>Event Sessions</h2>
+              <div className='text-white'>
+                <button className="px-4 py-1 capitalize rounded-sm bg-primary mr-2 inline-block hover:bg-gray-800 transition duration-300">By name</button>
+                <button className="px-4 py-1 capitalize rounded-sm bg-gray-800 mr-2 inline-block hover:bg-gray-800 transition duration-300">By vote</button>
+              </div>
+              <div className="">
+                <button className="px-4 py-1 capitalize rounded-sm mr-2 inline-block hover:bg-gray-800 transition duration-300">all</button>
+                <button className="px-4 py-1 capitalize rounded-sm bg-gray-800 mr-2 inline-block hover:bg-gray-800 transition duration-300">beginner</button>
+                <button className="px-4 py-1 capitalize rounded-sm bg-gray-800 mr-2 inline-block hover:bg-gray-800 transition duration-300">intermediary</button>
+                <button className="px-4 py-1 capitalize rounded-sm bg-gray-800 mr-2 inline-block hover:bg-gray-800 transition duration-300">advanced</button>
+              </div>
               <button
                 onClick={() => setIsAddMode(true)}
                 className="text-purple-500"
@@ -121,9 +127,6 @@ const EventDetailsPage = () => {
                 <h1>This is Add Mode</h1>
               </div>
             )}
-          </div>
-          <div className="col-span-2">
-            Place <br /> Holder
           </div>
         </div>
       </section>
